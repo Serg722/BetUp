@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BetToday {
+    //test
     private String country;
     private String time;
     private String teamOwner;
