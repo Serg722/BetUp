@@ -22,6 +22,7 @@ public class History extends Activity {
 
 
     Button todayTips;
+    Button tipsBonus;
 
     private RecyclerView recyclerView;
     private HistoryAdapter mAdapter;
@@ -49,6 +50,15 @@ public class History extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(".TodayTips");
+                startActivity(intent);
+            }
+        });
+
+        tipsBonus = (Button) findViewById(R.id.bonus_tips);
+        tipsBonus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(".BonusTips");
                 startActivity(intent);
             }
         });

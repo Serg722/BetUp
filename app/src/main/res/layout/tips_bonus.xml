@@ -93,7 +93,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="2dp"
             android:background="@android:color/transparent"
-            android:text="@string/bonus"
+            android:text="@string/history_bonus"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"
