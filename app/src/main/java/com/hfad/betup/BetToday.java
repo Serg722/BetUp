@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BetToday {
+    public final static int POSITIVE_COLOR = 0xFF007404;
+    public final static int NEGATIVE_COLOR = 0xFFC00117;
+    public final static int RETURN_COLOR = 0xFFFDDE10;
+    public final static int NO_HISTORY = 0xFFFFFFFF;
     //test
     private String country;
     private String time;

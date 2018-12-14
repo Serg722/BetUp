@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hfad.betup.Adapters.PredictionAdapter;
 
 import java.util.ArrayList;
 
@@ -39,8 +40,8 @@ public class TodayTips extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_today);
         header = findViewById(R.id.carrent_date);
-        mAdapter = new PredictionAdapter(false,this,dbPredict, false);
-        header.setText(mAdapter.currendate);
+        mAdapter = new PredictionAdapter(this,dbPredict);
+        header.setText(mAdapter.getCurrendate());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

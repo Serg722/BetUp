@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hfad.betup.Adapters.BonusAdapter;
 
 public class BonusTips extends Activity {
 
@@ -23,7 +24,7 @@ public class BonusTips extends Activity {
     private Button history;
 
     private RecyclerView recyclerView;
-    private PredictionAdapter mAdapter;
+    private BonusAdapter mAdapter;
     DatabaseReference dbPredict;
     private TextView header;
     final String TAG = "Prediction";
@@ -38,8 +39,8 @@ public class BonusTips extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_bonus);
         header = findViewById(R.id.carrent_date);
-        mAdapter = new PredictionAdapter(false,this,dbPredict, true);
-        header.setText(mAdapter.currendate);
+        mAdapter = new BonusAdapter(this,dbPredict);
+        //header.setText(mAdapter.currendate);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

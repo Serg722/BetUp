@@ -1,21 +1,21 @@
-package com.hfad.betup;
+package com.hfad.betup.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.hfad.betup.BetToday;
+import com.hfad.betup.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,26 +23,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
-/**
- * Created by Abhi on 23 Sep 2017 023.
- */
-
-public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.CustomViewHolder> {
+public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHolder> {
     DatabaseReference db;
     private LayoutInflater mInflater;
     private List<BetToday> predictions = new ArrayList<>();
-    private List<BetToday> predictionsAll = new ArrayList<>();
-    final String TAG = "Prediction";
+    // private List<BetToday> predictionsAll = new ArrayList<>();
+    final String TAG = "BonusAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
-    boolean hystory;
-    // private Context mContext;
-    // private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
-    private boolean bonus;
-    final int POSITIVE_COLOR = 0xFF007404;
-    final int NEGATIVE_COLOR = 0xFFC00117;
-    final int RETURN_COLOR = 0xFFFDDE10;
-    final int NO_HISTORY = 0xFFFFFFFF;
     String currendate="";
 
 
@@ -68,9 +56,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
     }
 
 
-    public PredictionAdapter(final boolean isHystory, Context ctx, DatabaseReference dbPrediction,boolean isBonus) {
-        this.hystory = isHystory;
-        this.bonus=isBonus;
+    public BonusAdapter( Context ctx, DatabaseReference dbPrediction) {
         createFlag();
 
         this.mInflater = LayoutInflater.from(ctx);
@@ -96,9 +82,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
 
                 BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
                         m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
-              // predictionsAll.add(predict);
                 addCollection(predict);
-
                 notifyItemInserted(predictions.size());
             }
 
@@ -124,35 +108,15 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         };
         this.db.addChildEventListener(childEventListener);
         mChildEventListener = childEventListener;
-//for(BetToday temp:predictionsAll){
-//    if(temp.getFlagBonus().equals("true") && this.bonus==true){
-//        predictions.add(temp);
-
-//    }
-   // System.out.println(predictions.size()+ " @@@@@@@@@@@@@@@@@");
-//}
-
     }
 
     private void addCollection( BetToday predict) {
         String m_flagBonus=predict.getFlagBonus();
         String m_resultMatchOwner=predict.getResultMatchOwner();
 
-        if(this.bonus == true && m_flagBonus.equals("true")){
-           predictions.add(predict);
-       }else{
-           if ( m_flagBonus.equals("false") && this.hystory == false ) {
-               if (m_resultMatchOwner.equals("-1")) {
-                   predictions.add(predict);
-               }
-
-           } else {
-               if (m_flagBonus.equals("false") && m_resultMatchOwner.equals("-1") == false  ) {
-                   predictions.add(predict);
-
-               }
-           }
-       }
+        if( m_flagBonus.equals("true")){
+            predictions.add(predict);
+        }
     }
 
     private void createFlag() {
@@ -185,15 +149,15 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
     }
 
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BonusAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = this.mInflater
                 .inflate(R.layout.prediction_item, parent, false);
 
-        return new CustomViewHolder(itemView);
+        return new BonusAdapter.CustomViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(BonusAdapter.CustomViewHolder holder, int position) {
         BetToday tempPrediction = predictions.get(position);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
@@ -204,15 +168,15 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
         int stateColor = 0;
-        if (hystory == true) {
+        if (tempPrediction.getResultMatchGuest().equals("-1") == false) {
             holder.timeMatch.setText(tempPrediction.getTime());
             holder.teams.setText(tempPrediction.getTeamOwner() + " (" +
                     tempPrediction.getResultMatchOwner()+ "-" +
                     tempPrediction.getResultMatchGuest() + ") " + tempPrediction.getTeamGuest());
-            stateColor = tempPrediction.getState().equals("1") ? POSITIVE_COLOR :
-                    tempPrediction.getState().equals("-1") ? NEGATIVE_COLOR : RETURN_COLOR;
+            stateColor = tempPrediction.getState().equals("1") ? BetToday.POSITIVE_COLOR :
+                    tempPrediction.getState().equals("-1") ? BetToday.NEGATIVE_COLOR : BetToday.RETURN_COLOR;
         } else {
-            stateColor = NO_HISTORY;
+            stateColor = BetToday.NO_HISTORY;
         }
         holder.keffGame.setTextColor(stateColor);
 

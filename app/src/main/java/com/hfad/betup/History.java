@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hfad.betup.Adapters.BonusAdapter;
+import com.hfad.betup.Adapters.HistoryAdapter;
 
 public class History extends Activity {
 
@@ -22,7 +24,7 @@ public class History extends Activity {
     Button todayTips;
 
     private RecyclerView recyclerView;
-    private PredictionAdapter mAdapter;
+    private HistoryAdapter mAdapter;
     DatabaseReference dbPredict;
 
     @Override
@@ -33,7 +35,7 @@ public class History extends Activity {
         dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
-        mAdapter = new PredictionAdapter(true,this, dbPredict,false);
+        mAdapter = new HistoryAdapter(this, dbPredict);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -42,7 +44,6 @@ public class History extends Activity {
         LinearLayout test=findViewById(R.id.test_anim);
         Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
         test.startAnimation(animTest);
-
         todayTips = (Button) findViewById(R.id.todayTips);
         todayTips.setOnClickListener(new View.OnClickListener() {
             @Override
