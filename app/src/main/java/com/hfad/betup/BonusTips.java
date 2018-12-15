@@ -40,7 +40,7 @@ public class BonusTips extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_bonus);
         header = findViewById(R.id.carrent_date);
         mAdapter = new BonusAdapter(this,dbPredict);
-        //header.setText(mAdapter.currendate);
+        header.setText(mAdapter.getCurrendate());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

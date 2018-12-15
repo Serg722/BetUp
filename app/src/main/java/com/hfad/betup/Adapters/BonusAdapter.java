@@ -31,7 +31,15 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     final String TAG = "BonusAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
-    String currendate="";
+    private String currendate="";
+
+    public void setCurrendate(String currendate) {
+        this.currendate = currendate;
+    }
+
+    public String getCurrendate() {
+        return currendate;
+    }
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
