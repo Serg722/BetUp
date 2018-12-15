@@ -45,6 +45,7 @@ public class History extends Activity {
         LinearLayout test=findViewById(R.id.test_anim);
         Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
         test.startAnimation(animTest);
+
         todayTips = (Button) findViewById(R.id.todayTips);
         todayTips.setOnClickListener(new View.OnClickListener() {
             @Override

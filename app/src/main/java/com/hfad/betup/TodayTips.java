@@ -20,12 +20,12 @@ import com.hfad.betup.Adapters.PredictionAdapter;
 import java.util.ArrayList;
 
 
-public class TodayTips extends Activity {
+public class TodayTips extends Activity implements View.OnClickListener{
 
     private RecyclerView recyclerView;
     private PredictionAdapter mAdapter;
-    private Button history;
-    private Button tipsBonus;
+    Button history;
+    Button bonus;
     private TextView header;
     //FirebaseFirestore db;
     DatabaseReference dbPredict;
@@ -52,32 +52,52 @@ public class TodayTips extends Activity {
         Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
         test.startAnimation(animTest);
 
-        addListerOnButtonHistory();
-        addListerOnButtonBonus();
-    }
-    public void addListerOnButtonHistory() {
         history = (Button) findViewById(R.id.history);
-        history.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(".History");
-                        startActivity(intent);
-                    }
-                }
-        );
-    }
-    public void addListerOnButtonBonus() {
-        tipsBonus = (Button) findViewById(R.id.bonus);
-        tipsBonus.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(".BonusTips");
-                        startActivity(intent);
-                    }
-                }
-        );
-    }
+        history.setOnClickListener(this);
+        bonus = (Button) findViewById(R.id.bonus);
+        bonus.setOnClickListener(this);
 
+//        addListerOnButtonHistory();
+//        addListerOnButtonBonus();
     }
+//    public void addListerOnButtonHistory() {
+//        history = (Button) findViewById(R.id.history);
+//        history.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(".History");
+//                        startActivity(intent);
+//                    }
+//                }
+//        );
+//    }
+//    public void addListerOnButtonBonus() {
+//        tipsBonus = (Button) findViewById(R.id.bonus);
+//        tipsBonus.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(".BonusTips");
+//                        startActivity(intent);
+//                    }
+//                }
+//        );
+//    }
+
+    @Override
+    public void onClick(View v) {
+switch (v.getId()){
+    case R.id.history:
+        Intent intent = new Intent(this, History.class);
+        startActivity(intent);
+        break;
+    case  R.id.bonus:
+        Intent intent_bonus = new Intent(this, BonusTips.class);
+        startActivity(intent_bonus);
+        break;
+        default:
+            break;
+}
+    }
+}
