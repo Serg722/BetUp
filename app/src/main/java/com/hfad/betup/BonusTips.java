@@ -60,7 +60,7 @@ public class BonusTips extends Activity {
             }
         });
 
-        history = (Button) findViewById(R.id.history_bonus);
+        history = (Button) findViewById(R.id.historyBonus);
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
