@@ -146,6 +146,9 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         flags.put("sweden.jpg", R.drawable.sweden);
         flags.put("switzerland.jpg", R.drawable.switzerland);
         flags.put("turkey.jpg", R.drawable.turkey);
+        flags.put("basket.png", R.drawable.basket);
+        flags.put("tennis.png", R.drawable.tennis);
+        flags.put("hockey.png", R.drawable.hockey);
     }
 
     @Override
