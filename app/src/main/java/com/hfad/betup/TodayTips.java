@@ -20,7 +20,7 @@ import com.hfad.betup.Adapters.PredictionAdapter;
 import java.util.ArrayList;
 
 
-public class TodayTips extends Activity implements View.OnClickListener{
+public class TodayTips extends Activity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private PredictionAdapter mAdapter;
@@ -30,26 +30,26 @@ public class TodayTips extends Activity implements View.OnClickListener{
     //FirebaseFirestore db;
     DatabaseReference dbPredict;
     final String TAG = "Prediction";
-     ArrayList<BetToday> spisok;
+    ArrayList<BetToday> spisok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tips_today);
-        dbPredict=FirebaseDatabase.getInstance().getReference().child("Predictions");
+        dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_today);
         header = findViewById(R.id.carrent_date);
-        mAdapter = new PredictionAdapter(this,dbPredict);
+        mAdapter = new PredictionAdapter(this, dbPredict);
         header.setText(mAdapter.getCurrendate());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-       // mAdapter.notifyDataSetChanged();
-        LinearLayout test=findViewById(R.id.test_anim);
-        Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
+        // mAdapter.notifyDataSetChanged();
+        LinearLayout test = findViewById(R.id.test_anim);
+        Animation animTest = AnimationUtils.loadAnimation(this, R.anim.test);
         test.startAnimation(animTest);
 
         history = (Button) findViewById(R.id.history);
@@ -87,17 +87,17 @@ public class TodayTips extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-switch (v.getId()){
-    case R.id.history:
-        Intent intent = new Intent(this, History.class);
-        startActivity(intent);
-        break;
-    case  R.id.bonus:
-        Intent intent_bonus = new Intent(this, BonusTips.class);
-        startActivity(intent_bonus);
-        break;
-        default:
-            break;
-}
+        switch (v.getId()) {
+            case R.id.history:
+                Intent intent = new Intent(this, History.class);
+                startActivity(intent);
+                break;
+            case R.id.bonus:
+                Intent intent_bonus = new Intent(this, BonusTips.class);
+                startActivity(intent_bonus);
+                break;
+            default:
+                break;
+        }
     }
 }
