@@ -20,9 +20,13 @@ import com.hfad.betup.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Vector;
 
 /**
  * Created by Abhi on 23 Sep 2017 023.
@@ -32,6 +36,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
     DatabaseReference db;
     private LayoutInflater mInflater;
     private List<BetToday> predictions = new ArrayList<>();
+
    // private List<BetToday> predictionsAll = new ArrayList<>();
     final String TAG = "PredictionAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
@@ -72,6 +77,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
           createFlag();
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
+
         Date tempDate=new Date();
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         this.currendate=formatItem.format(tempDate);
