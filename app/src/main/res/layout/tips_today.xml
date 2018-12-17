@@ -11,10 +11,11 @@
 
     <LinearLayout
         android:id="@+id/test_anim"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
 
+        android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
 
@@ -36,7 +37,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_marginStart="10sp" />
 
         <Button
             android:id="@+id/button2"
@@ -44,8 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:paddingStart="15sp"
-            android:paddingEnd="15sp"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
             android:shadowColor="#ff000000"
             android:shadowDx="5"
             android:shadowDy="4"
@@ -55,7 +57,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_marginStart="10sp" />
     </LinearLayout>
 
     <android.support.constraint.ConstraintLayout
