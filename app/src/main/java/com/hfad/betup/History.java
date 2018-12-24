@@ -11,11 +11,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.hfad.betup.Adapters.BonusAdapter;
 import com.hfad.betup.Adapters.HistoryAdapter;
 
 public class History extends Activity {
@@ -55,7 +53,7 @@ public class History extends Activity {
             }
         });
 
-        tipsBonus = (Button) findViewById(R.id.bonus_tips);
+        tipsBonus = (Button) findViewById(R.id.bonus);
         tipsBonus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
