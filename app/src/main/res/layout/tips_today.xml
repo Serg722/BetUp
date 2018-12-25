@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:id="@+id/test_anim"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
 
@@ -102,7 +102,7 @@
             android:layout_height="34sp"
             android:layout_marginTop="2dp"
             android:background="@drawable/button"
-            android:text="@string/history_bonus"
+            android:text="@string/history"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"

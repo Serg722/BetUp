@@ -52,7 +52,7 @@ public class TodayTips extends Activity implements View.OnClickListener {
         Animation animTest = AnimationUtils.loadAnimation(this, R.anim.test);
         test.startAnimation(animTest);
 
-        history = (Button) findViewById(R.id.todayTips);
+        history = (Button) findViewById(R.id.history);
         history.setOnClickListener(this);
         bonus = (Button) findViewById(R.id.bonus);
         bonus.setOnClickListener(this);
@@ -88,7 +88,7 @@ public class TodayTips extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.todayTips:
+            case R.id.history:
                 Intent intent = new Intent(this, History.class);
                 startActivity(intent);
                 break;
