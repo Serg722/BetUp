@@ -72,9 +72,8 @@ android:padding="1dp">
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="34sp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/button"
         android:text="@string/today_tips"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/white"
@@ -84,20 +83,37 @@ android:padding="1dp">
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bonus_tips"
+        android:id="@+id/history"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="34sp"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="2dp"
-        android:background="@android:color/transparent"
-        android:text="@string/bonus"
+        android:background="@drawable/activebutton"
+        android:text="@string/history"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/todayTips"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:textSize="18sp" />
+
+    <Button
+        android:id="@+id/bonus"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="34sp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/button"
+        android:text="@string/bonus"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/history"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

@@ -2,11 +2,11 @@
     <string name="app_name">BetUp</string>
     <string name="go">PUSH TO PLAY</string>
     <string name="rate_us">Rate Us</string>
-    <string name="today_tips">Today Tips</string>
+    <string name="today_tips">Today</string>
     <string name="buy">BUY PREMIUM APP</string>
     <string name="subscribe">BUY LIFE APP</string>
     <string name="history">History</string>
-    <string name="bonus">Bonus Tips</string>
+    <string name="bonus">Bonus</string>
     <string name="today_tips_bonus">Today Tips</string>
     <string name="history_bonus">History</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>

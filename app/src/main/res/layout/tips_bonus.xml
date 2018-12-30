@@ -56,7 +56,19 @@
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/carrent_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="01.01.2018"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="252dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
@@ -68,53 +80,56 @@
         tools:background="@android:color/transparent">
 
         <Button
-            android:id="@+id/todayTipsBonus"
+            android:id="@+id/todayTips"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="34sp"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="2dp"
-            android:background="@android:color/transparent"
-            android:text="@string/today_tips_bonus"
+            android:background="@drawable/button"
+            android:text="@string/today_tips"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/history"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="34sp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/button"
+            android:text="@string/history"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/todayTips"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:textSize="18sp" />
 
         <Button
-            android:id="@+id/historyBonus"
+            android:id="@+id/bonus"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="34sp"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="2dp"
-            android:background="@android:color/transparent"
-            android:text="@string/history_bonus"
+            android:background="@drawable/activebutton"
+            android:text="@string/bonus"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/todayTipsBonus"
+            app:layout_constraintStart_toEndOf="@+id/history"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:textSize="18sp" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/carrent_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="01.01.2018"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
