@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,16 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.hfad.betup.BetToday;
 import com.hfad.betup.R;
 
+import org.json.JSONArray;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
@@ -32,6 +38,7 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
     private String currendate="";
+    Query my;
 
     public void setCurrendate(String currendate) {
         this.currendate = currendate;
@@ -64,11 +71,12 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     }
 
 
+
     public BonusAdapter( Context ctx, DatabaseReference dbPrediction) {
         createFlag();
-
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
+        my=db.orderByChild("resultMatchOwner");
         Date tempDate=new Date();
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         this.currendate=formatItem.format(tempDate);
@@ -114,8 +122,20 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
 
             }
         };
-        this.db.addChildEventListener(childEventListener);
+       // this.db.addChildEventListener(childEventListener);
+my.addChildEventListener(childEventListener);
         mChildEventListener = childEventListener;
+        Collections.sort(predictions, new Comparator<BetToday>() {
+            @Override
+            public int compare(BetToday o1, BetToday o2) {
+               String p1= o1.getTime().split(",")[1];
+                String p2= o2.getTime().split(",")[1];
+
+                return Integer.valueOf(o1.getKeff().split("\\.")[1])-Integer.valueOf(o2.getKeff().split("\\.")[1]);
+            }
+        });
+        Log.d("TestSort",predictions.toString()+"77777777777777777777777777777");
+        notifyDataSetChanged();
     }
 
     private void addCollection( BetToday predict) {
