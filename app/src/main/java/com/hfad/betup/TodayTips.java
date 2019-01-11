@@ -26,6 +26,7 @@ public class TodayTips extends Activity implements View.OnClickListener {
     private PredictionAdapter mAdapter;
     Button history;
     Button bonus;
+    Button moretips;
     private TextView header;
     //FirebaseFirestore db;
     DatabaseReference dbPredict;
@@ -56,6 +57,10 @@ public class TodayTips extends Activity implements View.OnClickListener {
         history.setOnClickListener(this);
         bonus = (Button) findViewById(R.id.bonus);
         bonus.setOnClickListener(this);
+        moretips = (Button) findViewById(R.id.moretips);
+        moretips.setOnClickListener(this);
+
+
 
 //        addListerOnButtonHistory();
 //        addListerOnButtonBonus();
@@ -96,6 +101,11 @@ public class TodayTips extends Activity implements View.OnClickListener {
                 Intent intent_bonus = new Intent(this, BonusTips.class);
                 startActivity(intent_bonus);
                 break;
+            case R.id.moretips:
+                Intent intent_more = new Intent(this, MoreApp.class);
+                startActivity(intent_more);
+                break;
+
             default:
                 break;
         }

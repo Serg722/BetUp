@@ -51,7 +51,7 @@ public class BonusTips extends Activity {
         Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
         test.startAnimation(animTest);
 
-        todayTipsBonus = (Button) findViewById(R.id.todayTipsBonus);
+        todayTipsBonus = (Button) findViewById(R.id.todayTips);
         todayTipsBonus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class BonusTips extends Activity {
             }
         });
 
-        history = (Button) findViewById(R.id.historyBonus);
+        history = (Button) findViewById(R.id.history);
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
