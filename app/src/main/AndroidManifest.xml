@@ -34,7 +34,15 @@
             <action android:name=".BonusTips" />
 
             <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter></activity>
+        </intent-filter>
+        </activity>
+        <activity android:name=".MoreApp">
+            <intent-filter>
+                <action android:name=".MoreApp" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
