@@ -41,7 +41,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="41dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/logobasket135" />
+            android:background="@drawable/logobasket" />
 
         <Button
             android:id="@+id/button3"
@@ -53,7 +53,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="41dp"
-            android:background="@drawable/logotennis135" />
+            android:background="@drawable/logotennis" />
     </RelativeLayout>
 
 
