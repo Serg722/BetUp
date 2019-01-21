@@ -22,11 +22,11 @@ import java.util.ArrayList;
 
 public class TodayTips extends Activity implements View.OnClickListener {
 
-    private RecyclerView recyclerView;
-    private PredictionAdapter mAdapter;
     Button history;
     Button bonus;
-    Button moretips;
+    Button moreTips;
+    private RecyclerView recyclerView;
+    private PredictionAdapter mAdapter;
     private TextView header;
     //FirebaseFirestore db;
     DatabaseReference dbPredict;
@@ -57,8 +57,8 @@ public class TodayTips extends Activity implements View.OnClickListener {
         history.setOnClickListener(this);
         bonus = (Button) findViewById(R.id.bonus);
         bonus.setOnClickListener(this);
-        moretips = (Button) findViewById(R.id.moretips);
-        moretips.setOnClickListener(this);
+        moreTips = (Button) findViewById(R.id.moretips);
+        moreTips.setOnClickListener(this);
 
 
 

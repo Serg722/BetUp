@@ -11,20 +11,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hfad.betup.Adapters.HistoryAdapter;
 
-public class History extends Activity {
+public class History extends Activity implements View.OnClickListener{
 
-
+    Button bonus;
+    Button moreTips;
     Button todayTips;
-    Button tipsBonus;
-
     private RecyclerView recyclerView;
     private HistoryAdapter mAdapter;
     DatabaseReference dbPredict;
+    private TextView header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +46,31 @@ public class History extends Activity {
         test.startAnimation(animTest);
 
         todayTips = (Button) findViewById(R.id.todayTips);
-        todayTips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(".TodayTips");
-                startActivity(intent);
-            }
-        });
+        todayTips.setOnClickListener(this);
+        bonus = (Button) findViewById(R.id.bonus);
+        bonus.setOnClickListener(this);
+        moreTips = (Button) findViewById(R.id.moretips);
+        moreTips.setOnClickListener(this);
+    }
 
-        tipsBonus = (Button) findViewById(R.id.bonus);
-        tipsBonus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(".BonusTips");
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.todayTips:
+                Intent intent = new Intent(this, TodayTips.class);
                 startActivity(intent);
-            }
-        });
+                break;
+            case R.id.bonus:
+                Intent intent_bonus = new Intent(this, BonusTips.class);
+                startActivity(intent_bonus);
+                break;
+            case R.id.moretips:
+                Intent intent_more = new Intent(this, MoreApp.class);
+                startActivity(intent_more);
+                break;
+
+            default:
+                break;
+        }
     }
 }

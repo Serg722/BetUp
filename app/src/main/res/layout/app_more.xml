@@ -20,10 +20,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/button_premium"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="250dp"
             android:layout_height="250dp"
@@ -33,26 +37,26 @@
             android:background="@drawable/logoprem" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_baseball"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_alignTop="@+id/button3"
+            android:layout_alignTop="@+id/button_tennis"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="27dp"
             android:layout_marginTop="0dp"
             android:background="@drawable/logobasket" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_tennis"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_below="@+id/button4"
+            android:layout_below="@+id/button_premium"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="27dp"
             android:background="@drawable/logotennis" />
     </RelativeLayout>
 
