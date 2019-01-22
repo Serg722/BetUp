@@ -57,6 +57,16 @@ android:padding="1dp">
         android:textStyle="bold" />
 </LinearLayout>
 
+    <TextView
+        android:id="@+id/carrent_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="01.01.2018"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
 <android.support.constraint.ConstraintLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

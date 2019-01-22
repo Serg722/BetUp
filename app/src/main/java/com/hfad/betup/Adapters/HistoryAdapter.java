@@ -31,7 +31,15 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
     final String TAG = "BonusAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
-    String currendate="";
+    private String currendate="";
+
+    public void setCurrendate(String currendate) {
+        this.currendate = currendate;
+    }
+
+    public String getCurrendate() {
+        return currendate;
+    }
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -149,6 +157,7 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         flags.put("basket.png", R.drawable.basket);
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
+        flags.put("world.jpg", R.drawable.world);
     }
 
     @Override

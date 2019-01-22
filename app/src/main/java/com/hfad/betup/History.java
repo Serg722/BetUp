@@ -33,9 +33,10 @@ public class History extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
         dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
+        header = findViewById(R.id.carrent_date);
         mAdapter = new HistoryAdapter(this, dbPredict);
+        header.setText(mAdapter.getCurrendate());
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

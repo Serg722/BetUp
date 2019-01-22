@@ -177,6 +177,7 @@ my.addChildEventListener(childEventListener);
         flags.put("basket.png", R.drawable.basket);
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
+        flags.put("world.jpg", R.drawable.world);
     }
 
     @Override
