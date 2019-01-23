@@ -95,9 +95,10 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
                 String m_state = ds.child("state").getValue(String.class);
                 String m_flag = ds.child("flag").getValue(String.class);
                 String m_flagBonus = ds.child("flagBonus").getValue(String.class);
+                String m_date = ds.child("date").getValue(String.class);
 
                 BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
-                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
+                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus, m_date);
                 addCollection(predict);
                 notifyItemInserted(predictions.size());
             }
@@ -194,8 +195,8 @@ my.addChildEventListener(childEventListener);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
         // SimpleDateFormat formatItem = new SimpleDateFormat("hh:mm");
-        String time = tempPrediction.getTime().split(",")[1];
-        holder.timeMatch.setText(time);
+       // String time = tempPrediction.getTime().split(",")[1];
+        holder.timeMatch.setText("222222222");
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));

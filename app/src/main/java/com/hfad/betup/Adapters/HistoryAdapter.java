@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,24 +15,30 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.hfad.betup.BetToday;
 import com.hfad.betup.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
 public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.CustomViewHolder> {
     DatabaseReference db;
     private LayoutInflater mInflater;
-    private List<BetToday> predictions = new ArrayList<>();
+    private List<BetToday> filtrPredictions = new ArrayList<>();
+    private List<BetToday>  predictions=new ArrayList<>();
     // private List<BetToday> predictionsAll = new ArrayList<>();
-    final String TAG = "BonusAdapter";
+    final String TAG = "HistoryAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
     private String currendate="";
+    Date filtr;
+
 
     public void setCurrendate(String currendate) {
         this.currendate = currendate;
@@ -63,69 +70,134 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         }
     }
 
+    public HistoryAdapter(Context context, DatabaseReference dbPredict, Date filtr) {
+     this(context, dbPredict);
+     this.filtr=filtr;
+     changeDateFiltr(filtr);
+
+
+    }
+
+
+
+//        ChildEventListener childEventListener = new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
+//
+//                String m_country = ds.child("country").getValue(String.class);
+//                String m_time = ds.child("time").getValue(String.class);
+//                String m_teamOwner = ds.child("teamOwner").getValue(String.class);
+//                String m_teamGuest = ds.child("teamGuest").getValue(String.class);
+//                String m_resultMatchOwner = ds.child("resultMatchOwner").getValue(String.class);
+//                String m_resultMatchGuest = ds.child("resultMatchGuest").getValue(String.class);
+//                String m_betPrediction = ds.child("betPrediction").getValue(String.class);
+//                String m_keff = ds.child("keff").getValue(String.class);
+//                String m_state = ds.child("state").getValue(String.class);
+//                String m_flag = ds.child("flag").getValue(String.class);
+//                String m_flagBonus = ds.child("flagBonus").getValue(String.class);
+//                String m_date = ds.child("date").getValue(String.class);
+//
+//                BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
+//                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus, m_date);
+//                addCollection(predict);
+//              //  notifyItemInserted(filtrPredictions.size());
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.d(TAG,"Cancel");
+//            }
+//        };
+//        this.db.addChildEventListener(childEventListener);
+//
+//        mChildEventListener = childEventListener;
+//        changeDateFiltr(this.filtr);
+
+    //}
+
+   public void changeDateFiltr(Date dateFiltr) {
+//        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+//        this.filtr=dateFiltr;
+//        String date1=formatItem.format(this.filtr);
+//        predictions.clear();
+//        for(BetToday temp: predictions){
+//
+//            if(date1.equals(temp.getDate())){
+//                Log.d(TAG+" temp- ",temp.toString());
+//                filtrPredictions.add(temp);
+//            }
+//
+//        }
+       this.filtr=dateFiltr;
+       SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+       String date1=formatItem.format(this.filtr);
+       Log.d(TAG,date1+" value filtr- ");
+       filtrPredictions.clear();
+       Query request = db.orderByChild("date").equalTo(date1);
+
+       request.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               if (dataSnapshot.exists()) {
+                   for (DataSnapshot PredSnapshot : dataSnapshot.getChildren()) {
+                       BetToday temp = PredSnapshot.getValue(BetToday.class);
+                       filtrPredictions.add(temp);
+                       Log.d(TAG, " 111111 " + temp);
+                   }
+                   Iterator<BetToday> it1=filtrPredictions.iterator();
+                   while(it1.hasNext()){
+                       BetToday temp1= it1.next();
+                       if(temp1.getFlagBonus().equals("true")){
+                           it1.remove();
+                       }
+                   }
+
+               }
+
+               notifyDataSetChanged();
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+        Log.d(TAG,filtrPredictions.toString()+this.filtr);
+    }
 
     public HistoryAdapter(Context ctx, DatabaseReference dbPrediction) {
         createFlag();
 
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
-        Date tempDate=new Date();
-        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
-        this.currendate=formatItem.format(tempDate);
-        ChildEventListener childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
-
-                String m_country = ds.child("country").getValue(String.class);
-                String m_time = ds.child("time").getValue(String.class);
-                String m_teamOwner = ds.child("teamOwner").getValue(String.class);
-                String m_teamGuest = ds.child("teamGuest").getValue(String.class);
-                String m_resultMatchOwner = ds.child("resultMatchOwner").getValue(String.class);
-                String m_resultMatchGuest = ds.child("resultMatchGuest").getValue(String.class);
-                String m_betPrediction = ds.child("betPrediction").getValue(String.class);
-                String m_keff = ds.child("keff").getValue(String.class);
-                String m_state = ds.child("state").getValue(String.class);
-                String m_flag = ds.child("flag").getValue(String.class);
-                String m_flagBonus = ds.child("flagBonus").getValue(String.class);
-
-                BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
-                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
-                addCollection(predict);
-                notifyItemInserted(predictions.size());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        this.db.addChildEventListener(childEventListener);
-        mChildEventListener = childEventListener;
     }
 
-    private void addCollection( BetToday predict) {
-        String m_flagBonus=predict.getFlagBonus();
-        String m_resultMatchOwner=predict.getResultMatchOwner();
 
-        if( m_flagBonus.equals("false")&& m_resultMatchOwner.equals("-1")==false){
-            predictions.add(predict);
-        }
-    }
+
+//    private void addCollection( BetToday predict) {
+//        String m_flagBonus=predict.getFlagBonus();
+//        String m_resultMatchOwner=predict.getResultMatchOwner();
+//
+//        if( m_flagBonus.equals("false")&& m_resultMatchOwner.equals("-1")==false){
+//            predictions.add(predict);
+//        }
+//        notifyItemInserted(filtrPredictions.size());
+//    }
 
     private void createFlag() {
         flags.put("england.jpg", R.drawable.england);
@@ -170,12 +242,12 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
 
     @Override
     public void onBindViewHolder(HistoryAdapter.CustomViewHolder holder, int position) {
-        BetToday tempPrediction = predictions.get(position);
+        BetToday tempPrediction = filtrPredictions.get(position);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
         // SimpleDateFormat formatItem = new SimpleDateFormat("hh:mm");
-        String time = tempPrediction.getTime().split(",")[1];
-        holder.timeMatch.setText(time);
+    //    String time = tempPrediction.getTime().split(",")[1];
+   //     holder.timeMatch.setText(time);
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
@@ -197,6 +269,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
 
     @Override
     public int getItemCount() {
-        return predictions.size();
+        return filtrPredictions.size();
     }
 }

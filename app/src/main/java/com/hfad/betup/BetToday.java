@@ -20,13 +20,14 @@ public class BetToday {
     private String state;
     private String flag;
     private String flagBonus;
+    private String date;
 
     public BetToday() {
     }
 
     public BetToday(String country, String time, String teamOwner, String teamGuest,
                     String resultMatchOwner, String resultMatchGuest, String betPrediction, String keff,
-                    String state, String flag, String flagBonus) {
+                    String state, String flag, String flagBonus, String date) {
         this.country = country;
         this.time = time;
         this.teamOwner = teamOwner;
@@ -38,6 +39,7 @@ public class BetToday {
         this.state=state;
         this.flag = flag;
         this.flagBonus = flagBonus;
+        this.date = date;
 
             }
 
@@ -83,6 +85,10 @@ public class BetToday {
 
     public String getFlagBonus() {
         return flagBonus;
+    }
+
+   public String getDate() {
+        return date;
     }
 }
 

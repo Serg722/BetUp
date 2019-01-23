@@ -17,11 +17,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hfad.betup.Adapters.HistoryAdapter;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
 public class History extends Activity implements View.OnClickListener{
 
     Button bonus;
     Button moreTips;
     Button todayTips;
+    Button left;
+    Button right;
+    Date dataConst;
+    Date currentDate;
     private RecyclerView recyclerView;
     private HistoryAdapter mAdapter;
     DatabaseReference dbPredict;
@@ -31,11 +39,17 @@ public class History extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        currentDate=new Date();
+        dataConst=new Date();
+        currentDate.setDate(currentDate.getDate()-1);
+        dataConst.setDate(dataConst.getDate()-1);
+        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+        String date1=formatItem.format(this.currentDate);
         setContentView(R.layout.history);
         dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
         header = findViewById(R.id.carrent_date);
-        mAdapter = new HistoryAdapter(this, dbPredict);
-        header.setText(mAdapter.getCurrendate());
+        mAdapter = new HistoryAdapter(this, dbPredict,currentDate);
+        header.setText(date1);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -52,6 +66,10 @@ public class History extends Activity implements View.OnClickListener{
         bonus.setOnClickListener(this);
         moreTips = (Button) findViewById(R.id.moretips);
         moreTips.setOnClickListener(this);
+        left = (Button) findViewById(R.id.left);
+        left.setOnClickListener(this);
+        right = (Button) findViewById(R.id.right);
+        right.setOnClickListener(this);
     }
 
     @Override
@@ -69,9 +87,29 @@ public class History extends Activity implements View.OnClickListener{
                 Intent intent_more = new Intent(this, MoreApp.class);
                 startActivity(intent_more);
                 break;
+            case R.id.left:
+currentDate.setDate(currentDate.getDate()-1);
+mAdapter.changeDateFiltr(this.currentDate);
 
+repaintDateHeader();
+
+                break;
+
+            case R.id.right:
+                if(currentDate.before(dataConst)){
+                    currentDate.setDate(currentDate.getDate()+1);
+                    mAdapter.changeDateFiltr(this.currentDate);
+                    repaintDateHeader();
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    void repaintDateHeader(){
+        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+        String date1=formatItem.format(this.currentDate);
+        header.setText(date1);
     }
 }
