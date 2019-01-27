@@ -39,6 +39,7 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     private ChildEventListener mChildEventListener;
     private String currendate="";
     Query my;
+    // test
 
     public void setCurrendate(String currendate) {
         this.currendate = currendate;
@@ -178,7 +179,7 @@ my.addChildEventListener(childEventListener);
         flags.put("basket.png", R.drawable.basket);
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
-        flags.put("world.jpg", R.drawable.world);
+       // flags.put("world.jpg", R.drawable.world);
     }
 
     @Override
