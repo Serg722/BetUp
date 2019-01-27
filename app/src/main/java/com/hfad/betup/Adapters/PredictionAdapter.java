@@ -96,9 +96,11 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
                 String m_state = ds.child("state").getValue(String.class);
                 String m_flag = ds.child("flag").getValue(String.class);
                 String m_flagBonus = ds.child("flagBonus").getValue(String.class);
+                String m_date = ds.child("date").getValue(String.class);
 
                 BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
-                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
+                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state,
+                        m_flag, m_flagBonus, m_date);
                     addCollection(predict);
 
                 notifyItemInserted(predictions.size());
@@ -167,7 +169,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         flags.put("basket.png", R.drawable.basket);
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
-
+        flags.put("world.jpg", R.drawable.world);
 
     }
 
@@ -184,9 +186,8 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         BetToday tempPrediction = predictions.get(position);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
-        // SimpleDateFormat formatItem = new SimpleDateFormat("hh:mm");
-        String time = tempPrediction.getTime().split(",")[1];
-        holder.timeMatch.setText(time);
+
+        holder.timeMatch.setText(tempPrediction.getTime());
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
