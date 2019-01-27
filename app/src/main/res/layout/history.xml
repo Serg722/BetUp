@@ -60,24 +60,30 @@ android:padding="1dp">
 </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="305dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/left"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="43dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="left" />
+            android:background="@android:color/transparent"
+            android:text="prew"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/carrent_date"
-            android:layout_width="wrap_content"
+            android:layout_width="129dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
             android:text="01.01.2018"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -88,68 +94,70 @@ android:padding="1dp">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right" />
+            android:background="@android:color/transparent"
+            android:text="next"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@android:color/transparent"
-    android:orientation="horizontal"
-    android:padding="1dp">
-
-
-    <Button
-        android:id="@+id/todayTips"
-        style="@style/Widget.AppCompat.Button"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="34sp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/button"
-        android:text="@string/today_tips"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="33dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/history"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="34sp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/activebutton"
-        android:text="@string/history"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/todayTips"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:textSize="18sp" />
 
-    <Button
-        android:id="@+id/bonus"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="34sp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/button"
-        android:text="@string/bonus"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/history"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/todayTips"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-</android.support.constraint.ConstraintLayout>
+            android:background="@drawable/button"
+            android:text="@string/today_tips"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/history"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/activebutton"
+            android:text="@string/history"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/todayTips"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:textSize="18sp" />
+
+        <Button
+            android:id="@+id/bonus"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/button"
+            android:text="@string/bonus"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/history"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
