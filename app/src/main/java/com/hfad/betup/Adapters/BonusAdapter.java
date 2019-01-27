@@ -33,7 +33,7 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     DatabaseReference db;
     private LayoutInflater mInflater;
     private List<BetToday> predictions = new ArrayList<>();
-    // private List<BetToday> predictionsAll = new ArrayList<>();
+
     final String TAG = "BonusAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
@@ -70,82 +70,96 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
         }
     }
 
-
-
-    public BonusAdapter( Context ctx, DatabaseReference dbPrediction) {
+    public BonusAdapter(List<BetToday> source,Context ctx ) {
         createFlag();
         this.mInflater = LayoutInflater.from(ctx);
-        this.db = dbPrediction;
-        my=db.orderByChild("resultMatchOwner");
-        Date tempDate=new Date();
-        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
-        this.currendate=formatItem.format(tempDate);
-        ChildEventListener childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
-
-                String m_country = ds.child("country").getValue(String.class);
-                String m_time = ds.child("time").getValue(String.class);
-                String m_teamOwner = ds.child("teamOwner").getValue(String.class);
-                String m_teamGuest = ds.child("teamGuest").getValue(String.class);
-                String m_resultMatchOwner = ds.child("resultMatchOwner").getValue(String.class);
-                String m_resultMatchGuest = ds.child("resultMatchGuest").getValue(String.class);
-                String m_betPrediction = ds.child("betPrediction").getValue(String.class);
-                String m_keff = ds.child("keff").getValue(String.class);
-                String m_state = ds.child("state").getValue(String.class);
-                String m_flag = ds.child("flag").getValue(String.class);
-                String m_flagBonus = ds.child("flagBonus").getValue(String.class);
-
-                BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
-                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
-                addCollection(predict);
-                notifyItemInserted(predictions.size());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-       // this.db.addChildEventListener(childEventListener);
-my.addChildEventListener(childEventListener);
-        mChildEventListener = childEventListener;
+        this.predictions=source;
         Collections.sort(predictions, new Comparator<BetToday>() {
             @Override
             public int compare(BetToday o1, BetToday o2) {
-               String p1= o1.getTime().split(",")[1];
-                String p2= o2.getTime().split(",")[1];
-
-                return Integer.valueOf(o1.getKeff().split("\\.")[1])-Integer.valueOf(o2.getKeff().split("\\.")[1]);
+                return o1.getKeff().compareTo(o2.getKeff());
             }
         });
-        Log.d("TestSort",predictions.toString()+"77777777777777777777777777777");
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
+        Date tempDate=new Date();
+        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+        this.currendate=formatItem.format(tempDate);
     }
 
-    private void addCollection( BetToday predict) {
-        String m_flagBonus=predict.getFlagBonus();
-        String m_resultMatchOwner=predict.getResultMatchOwner();
+//    public BonusAdapter(Context ctx, DatabaseReference dbPrediction) {
+//        createFlag();
+//        this.mInflater = LayoutInflater.from(ctx);
+//        this.db = dbPrediction;
+//        my=db.orderByChild("resultMatchOwner");
+//        Date tempDate=new Date();
+//        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
+//        this.currendate=formatItem.format(tempDate);
+//        ChildEventListener childEventListener = new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
+//
+//                String m_country = ds.child("country").getValue(String.class);
+//                String m_time = ds.child("time").getValue(String.class);
+//                String m_teamOwner = ds.child("teamOwner").getValue(String.class);
+//                String m_teamGuest = ds.child("teamGuest").getValue(String.class);
+//                String m_resultMatchOwner = ds.child("resultMatchOwner").getValue(String.class);
+//                String m_resultMatchGuest = ds.child("resultMatchGuest").getValue(String.class);
+//                String m_betPrediction = ds.child("betPrediction").getValue(String.class);
+//                String m_keff = ds.child("keff").getValue(String.class);
+//                String m_state = ds.child("state").getValue(String.class);
+//                String m_flag = ds.child("flag").getValue(String.class);
+//                String m_flagBonus = ds.child("flagBonus").getValue(String.class);
+//
+//                BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
+//                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state, m_flag, m_flagBonus);
+//                addCollection(predict);
+//                notifyItemInserted(predictions.size());
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//       // this.db.addChildEventListener(childEventListener);
+//my.addChildEventListener(childEventListener);
+//        mChildEventListener = childEventListener;
+//        Collections.sort(predictions, new Comparator<BetToday>() {
+//            @Override
+//            public int compare(BetToday o1, BetToday o2) {
+//               String p1= o1.getTime().split(",")[1];
+//                String p2= o2.getTime().split(",")[1];
+//
+//                return Integer.valueOf(o1.getKeff().split("\\.")[1])-Integer.valueOf(o2.getKeff().split("\\.")[1]);
+//            }
+//        });
+//        Log.d("TestSort",predictions.toString()+"77777777777777777777777777777");
+//        notifyDataSetChanged();
+//    }
 
-        if( m_flagBonus.equals("true")){
-            predictions.add(predict);
-        }
-    }
+//    private void addCollection( BetToday predict) {
+//        String m_flagBonus=predict.getFlagBonus();
+//        String m_resultMatchOwner=predict.getResultMatchOwner();
+//
+//        if( m_flagBonus.equals("true")){
+//            predictions.add(predict);
+//        }
+//    }
 
     private void createFlag() {
         flags.put("england.jpg", R.drawable.england);
