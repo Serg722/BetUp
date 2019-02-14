@@ -19,8 +19,6 @@ import com.google.firebase.database.Query;
 import com.hfad.betup.BetToday;
 import com.hfad.betup.R;
 
-import org.json.JSONArray;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -196,7 +194,7 @@ my.addChildEventListener(childEventListener);
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
         // SimpleDateFormat formatItem = new SimpleDateFormat("hh:mm");
        // String time = tempPrediction.getTime().split(",")[1];
-        holder.timeMatch.setText("222222222");
+        holder.timeMatch.setText(tempPrediction.getTime());
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
