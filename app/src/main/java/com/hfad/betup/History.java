@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class History extends Activity implements View.OnClickListener{
+public class History extends Activity implements View.OnClickListener {
 
     Button bonus;
     Button moreTips;
@@ -39,16 +39,16 @@ public class History extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        currentDate=new Date();
-        dataConst=new Date();
-        currentDate.setDate(currentDate.getDate()-1);
-        dataConst.setDate(dataConst.getDate()-1);
+        currentDate = new Date();
+        dataConst = new Date();
+        currentDate.setDate(currentDate.getDate() - 1);
+        dataConst.setDate(dataConst.getDate() - 1);
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
-        String date1=formatItem.format(this.currentDate);
+        String date1 = formatItem.format(this.currentDate);
         setContentView(R.layout.history);
         dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
         header = findViewById(R.id.carrent_date);
-        mAdapter = new HistoryAdapter(this, dbPredict,currentDate);
+        mAdapter = new HistoryAdapter(this, dbPredict, currentDate);
         header.setText(date1);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -56,8 +56,8 @@ public class History extends Activity implements View.OnClickListener{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-        LinearLayout test=findViewById(R.id.test_anim);
-        Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
+        LinearLayout test = findViewById(R.id.test_anim);
+        Animation animTest = AnimationUtils.loadAnimation(this, R.anim.test);
         test.startAnimation(animTest);
 
         todayTips = (Button) findViewById(R.id.todayTips);
@@ -88,16 +88,13 @@ public class History extends Activity implements View.OnClickListener{
                 startActivity(intent_more);
                 break;
             case R.id.left:
-currentDate.setDate(currentDate.getDate()-1);
-mAdapter.changeDateFiltr(this.currentDate);
-
-repaintDateHeader();
-
+                currentDate.setDate(currentDate.getDate() - 1);
+                mAdapter.changeDateFiltr(this.currentDate);
+                repaintDateHeader();
                 break;
-
             case R.id.right:
-                if(currentDate.before(dataConst)){
-                    currentDate.setDate(currentDate.getDate()+1);
+                if (currentDate.before(dataConst)) {
+                    currentDate.setDate(currentDate.getDate() + 1);
                     mAdapter.changeDateFiltr(this.currentDate);
                     repaintDateHeader();
                 }
@@ -107,9 +104,9 @@ repaintDateHeader();
         }
     }
 
-    void repaintDateHeader(){
+    void repaintDateHeader() {
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
-        String date1=formatItem.format(this.currentDate);
+        String date1 = formatItem.format(this.currentDate);
         header.setText(date1);
     }
 }
