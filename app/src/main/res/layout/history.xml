@@ -73,9 +73,10 @@ android:padding="1dp">
             android:layout_height="27dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="prew"
-            android:textAlignment="center"
-            android:textColor="@android:color/white" />
+            android:text="@string/prev"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/carrent_date"
@@ -83,7 +84,6 @@ android:padding="1dp">
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            android:text="01.01.2018"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -96,9 +96,10 @@ android:padding="1dp">
             android:layout_height="27dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="next"
-            android:textAlignment="center"
-            android:textColor="@android:color/white" />
+            android:text="@string/next"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout

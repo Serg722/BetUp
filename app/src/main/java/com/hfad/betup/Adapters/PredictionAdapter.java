@@ -84,7 +84,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         this.currendate=formatItem.format(tempDate);
         changeDateFiltr(this.filtr);
-
+    }
 //        ChildEventListener childEventListener = new ChildEventListener() {
 //            @Override
 //            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
@@ -132,7 +132,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
 //        };
 //        this.db.addChildEventListener(childEventListener);
 //        mChildEventListener = childEventListener;
-    }
+
     public void changeDateFiltr(Date dateFiltr) {
         this.filtr=dateFiltr;
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
@@ -175,10 +175,6 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
     private void addCollection( BetToday predict) {
         String m_flagBonus=predict.getFlagBonus();
         String m_resultMatchOwner=predict.getResultMatchOwner();
-//        Date date1 = new Date();
-//        SimpleDateFormat formatItem = new SimpleDateFormat("dd.mm.yyyy");
-//        String dateToday = formatItem.format(date1);
-//        String m_date = predict.getDate();
         if(m_flagBonus.equals("false")&&m_resultMatchOwner.equals("-1")){
            predictions.add(predict);
        }
@@ -231,7 +227,6 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         BetToday tempPrediction = predictions.get(position);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
-
         holder.timeMatch.setText(tempPrediction.getTime());
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
@@ -239,8 +234,6 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         int stateColor = 0;
            stateColor = BetToday.NO_HISTORY;
          holder.keffGame.setTextColor(stateColor);
-
-        // holder.flag.setImageResource(R.drawable.tennis2018);
     }
 
     @Override

@@ -36,11 +36,14 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
     TreeMap<String, Integer> flags = new TreeMap<>();
     private ChildEventListener mChildEventListener;
     private String currendate="";
+
     Date filtr;
 
 
     public void setCurrendate(String currendate) {
         this.currendate = currendate;
+
+
     }
 
     public String getCurrendate() {
