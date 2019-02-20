@@ -51,22 +51,13 @@ public class History extends Activity implements View.OnClickListener {
         dataConst.setDate(dataConst.getDate() - 1);
         nextDays.setDate(nextDays.getDate() - 2);
         today.setDate(today.getDate());
-
-        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
-        String date1 = formatItem.format(this.currentDate);
-        String date2 = formatItem.format(this.nextDays);
-        String date3 = formatItem.format(this.today);
-
         setContentView(R.layout.history);
         dbPredict = FirebaseDatabase.getInstance().getReference().child("Predictions");
         header = findViewById(R.id.carrent_date);
         previousDay = findViewById(R.id.left);
         nextDay = findViewById(R.id.right);
         mAdapter = new HistoryAdapter(this, dbPredict, currentDate);
-        header.setText(date1);
-        previousDay.setText(date2);
-        nextDay.setText(date3);
-
+        repaintDateHeader();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -106,16 +97,16 @@ public class History extends Activity implements View.OnClickListener {
                 break;
             case R.id.left:
                 currentDate.setDate(currentDate.getDate() - 1);
-                nextDays.setDate(nextDays.getDate() -1);
-                today.setDate(today.getDate()-1);
+                nextDays.setDate(nextDays.getDate() - 1);
+                today.setDate(today.getDate() - 1);
                 mAdapter.changeDateFiltr(this.currentDate);
                 repaintDateHeader();
                 break;
             case R.id.right:
                 if (currentDate.before(dataConst)) {
                     currentDate.setDate(currentDate.getDate() + 1);
-                    nextDays.setDate(nextDays.getDate() +1);
-                    today.setDate(today.getDate()+1);
+                    nextDays.setDate(nextDays.getDate() + 1);
+                    today.setDate(today.getDate() + 1);
                     mAdapter.changeDateFiltr(this.currentDate);
                     repaintDateHeader();
                 }
@@ -130,6 +121,11 @@ public class History extends Activity implements View.OnClickListener {
         String date1 = formatItem.format(this.currentDate);
         String date2 = formatItem.format(this.nextDays);
         String date3 = formatItem.format(this.today);
+        if(date3.equals(formatItem.format(new Date()))){
+            nextDay.setVisibility(View.INVISIBLE);
+        }else{
+            nextDay.setVisibility(View.VISIBLE);
+        }
         header.setText(date1);
         previousDay.setText(date2);
         nextDay.setText(date3);

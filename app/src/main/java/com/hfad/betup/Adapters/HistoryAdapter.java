@@ -88,17 +88,17 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
        String date1=formatItem.format(this.filtr);
        Log.d(TAG,date1+" value filtr- ");
-       filtrPredictions.clear();
+      // filtrPredictions.clear();
        Query request = db.orderByChild("date").equalTo(date1);
 
        request.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                if (dataSnapshot.exists()) {
+                   filtrPredictions.clear();  //!!!!!!
                    for (DataSnapshot PredSnapshot : dataSnapshot.getChildren()) {
                        BetToday temp = PredSnapshot.getValue(BetToday.class);
                        filtrPredictions.add(temp);
-                       Log.d(TAG, " 111111 " + temp);
                    }
                    Iterator<BetToday> it1=filtrPredictions.iterator();
                    while(it1.hasNext()){
@@ -182,8 +182,8 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
         int stateColor = 0;
+        holder.timeMatch.setText(tempPrediction.getTime());
         if (tempPrediction.getResultMatchGuest().equals("-1") == false) {
-            holder.timeMatch.setText(tempPrediction.getTime());
             holder.teams.setText(tempPrediction.getTeamOwner() + " (" +
                     tempPrediction.getResultMatchOwner()+ "-" +
                     tempPrediction.getResultMatchGuest() + ") " + tempPrediction.getTeamGuest());
