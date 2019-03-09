@@ -32,9 +32,8 @@ android:padding="1dp">
         android:shadowRadius="8"
         android:text="@string/subscribe"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
@@ -50,39 +49,41 @@ android:padding="1dp">
         android:shadowDy="4"
         android:shadowRadius="8"
         android:text="@string/buy"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 
 </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="8dp"
+        tools:background="@android:color/transparent">
 
         <Button
             android:id="@+id/left"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button"
             android:text="@string/prev"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white" />
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/carrent_date"
-            android:layout_width="129dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
+            android:text="@string/date"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -91,68 +92,61 @@ android:padding="1dp">
         <Button
             android:id="@+id/right"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button"
             android:text="@string/next"
-            android:textAlignment="textEnd"
-            android:textColor="@android:color/white" />
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         android:orientation="horizontal">
-
 
         <Button
             android:id="@+id/todayTips"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34sp"
+            android:layout_weight="1"
             android:background="@drawable/button"
             android:text="@string/today_tips"
-            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/history"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34sp"
+            android:layout_weight="1"
             android:background="@drawable/activebutton"
             android:text="@string/history"
-            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/todayTips"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:textSize="18sp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/bonus"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34sp"
+            android:layout_weight="1"
             android:background="@drawable/button"
             android:text="@string/bonus"
-            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/history"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
