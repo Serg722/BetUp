@@ -67,28 +67,26 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
             teams = (TextView) view.findViewById(R.id.bothTeams);
             predictionToday = (TextView) view.findViewById((R.id.prediction));
             keffGame = (TextView) view.findViewById(R.id.teamKeff);
-
         }
     }
+
     public BonusAdapter( Context ctx, DatabaseReference dbPrediction) {
         createFlag();
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
-
         Date tempDate=new Date();
         this.filtr=new Date();
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         this.currendate=formatItem.format(tempDate);
         changeDateFiltr(this.filtr);
     }
+
     public void changeDateFiltr(Date dateFiltr) {
         this.filtr=dateFiltr;
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         String date1=formatItem.format(this.filtr);
-        Log.d(TAG,date1+" value filtr- ");
-
+//        Log.d(TAG,date1+" value filtr- ");
         Query request = db.orderByChild("date").equalTo(date1);
-
         request.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,7 +95,7 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
                     for (DataSnapshot PredSnapshot : dataSnapshot.getChildren()) {
                         BetToday temp = PredSnapshot.getValue(BetToday.class);
                         predictions.add(temp);
-                        Log.d(TAG, " 111111 " + temp);
+//                        Log.d(TAG, " 111111 " + temp);
                     }
                     Iterator<BetToday> it1=predictions.iterator();
                     while(it1.hasNext()){
@@ -106,15 +104,11 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
                             it1.remove();
                         }
                     }
-
                 }
-
                 notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
         Log.d(TAG,predictions.toString()+this.filtr);
@@ -190,7 +184,6 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     private void addCollection( BetToday predict) {
         String m_flagBonus=predict.getFlagBonus();
         String m_resultMatchOwner=predict.getResultMatchOwner();
-
         if( m_flagBonus.equals("true")){
             predictions.add(predict);
         }
@@ -233,7 +226,6 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
     public BonusAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = this.mInflater
                 .inflate(R.layout.prediction_item, parent, false);
-
         return new BonusAdapter.CustomViewHolder(itemView);
     }
 
@@ -260,7 +252,6 @@ public class BonusAdapter extends RecyclerView.Adapter<BonusAdapter.CustomViewHo
             stateColor = BetToday.NO_HISTORY;
         }
         holder.keffGame.setTextColor(stateColor);
-
         // holder.flag.setImageResource(R.drawable.tennis2018);
     }
 

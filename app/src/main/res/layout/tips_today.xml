@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backfon"
     android:orientation="vertical"
-    android:padding="0dp">
+    android:padding="1dp">
 
 
     <LinearLayout
@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
@@ -34,7 +33,7 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:layout_marginStart="10sp" />
 
@@ -54,7 +53,7 @@
             android:textAlignment="viewEnd"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:layout_marginStart="10sp" />
     </LinearLayout>
@@ -76,7 +75,6 @@
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         android:orientation="horizontal"
-        android:padding="0dp"
         tools:background="@android:color/transparent">
 
         <Button
@@ -84,12 +82,11 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="34sp"
-            android:layout_marginTop="2dp"
             android:background="@drawable/activebutton"
             android:text="@string/today_tips"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,12 +96,11 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="34sp"
-            android:layout_marginTop="2dp"
             android:background="@drawable/button"
             android:text="@string/history"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/todayTips"
@@ -117,12 +113,11 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="34sp"
-            android:layout_marginTop="2dp"
             android:background="@drawable/button"
             android:text="@string/bonus"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/history"

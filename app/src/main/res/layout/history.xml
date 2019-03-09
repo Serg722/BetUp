@@ -75,8 +75,7 @@ android:padding="1dp">
             android:background="@android:color/transparent"
             android:text="@string/prev"
             android:textAlignment="textStart"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/carrent_date"
@@ -98,8 +97,7 @@ android:padding="1dp">
             android:background="@android:color/transparent"
             android:text="@string/next"
             android:textAlignment="textEnd"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -115,12 +113,11 @@ android:padding="1dp">
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@drawable/button"
             android:text="@string/today_tips"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,12 +127,11 @@ android:padding="1dp">
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@drawable/activebutton"
             android:text="@string/history"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/todayTips"
@@ -148,12 +144,11 @@ android:padding="1dp">
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@drawable/button"
             android:text="@string/bonus"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/history"

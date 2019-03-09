@@ -42,8 +42,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
 
     public void setCurrendate(String currendate) {
         this.currendate = currendate;
-
-
     }
 
     public String getCurrendate() {
@@ -68,7 +66,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
             teams = (TextView) view.findViewById(R.id.bothTeams);
             predictionToday = (TextView) view.findViewById((R.id.prediction));
             keffGame = (TextView) view.findViewById(R.id.teamKeff);
-
         }
     }
 
@@ -76,21 +73,15 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
      this(context, dbPredict);
      this.filtr=filtr;
      changeDateFiltr(filtr);
-
-
     }
-
-
-
 
    public void changeDateFiltr(Date dateFiltr) {
        this.filtr=dateFiltr;
        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
        String date1=formatItem.format(this.filtr);
        Log.d(TAG,date1+" value filtr- ");
-      // filtrPredictions.clear();
+       filtrPredictions.clear();
        Query request = db.orderByChild("date").equalTo(date1);
-
        request.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -107,15 +98,12 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
                            it1.remove();
                        }
                    }
-
                }
-
                notifyDataSetChanged();
            }
 
            @Override
            public void onCancelled(@NonNull DatabaseError databaseError) {
-
            }
        });
         Log.d(TAG,filtrPredictions.toString()+this.filtr);
@@ -123,11 +111,9 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
 
     public HistoryAdapter(Context ctx, DatabaseReference dbPrediction) {
         createFlag();
-
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
     }
-
 
     private void createFlag() {
         flags.put("england.jpg", R.drawable.england);
