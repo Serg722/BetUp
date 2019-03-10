@@ -12,13 +12,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hfad.betup.Adapters.HistoryAdapter;
-
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class History extends Activity implements View.OnClickListener {
@@ -67,7 +64,6 @@ public class History extends Activity implements View.OnClickListener {
         LinearLayout test = findViewById(R.id.test_anim);
         Animation animTest = AnimationUtils.loadAnimation(this, R.anim.test);
         test.startAnimation(animTest);
-
         todayTips = (Button) findViewById(R.id.todayTips);
         todayTips.setOnClickListener(this);
         bonus = (Button) findViewById(R.id.bonus);

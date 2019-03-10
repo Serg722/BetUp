@@ -13,7 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hfad.betup.Adapters.BonusAdapter;
@@ -32,11 +31,9 @@ public class BonusTips extends Activity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tips_bonus);
         dbPredict=FirebaseDatabase.getInstance().getReference().child("Predictions");
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_bonus);
         header = findViewById(R.id.carrent_date);
         mAdapter = new BonusAdapter(this,dbPredict);
@@ -46,11 +43,9 @@ public class BonusTips extends Activity implements View.OnClickListener{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-        // mAdapter.notifyDataSetChanged();
         LinearLayout test=findViewById(R.id.test_anim);
         Animation animTest = AnimationUtils.loadAnimation(this,R.anim.test);
         test.startAnimation(animTest);
-
         todayTips = (Button) findViewById(R.id.todayTips);
         todayTips.setOnClickListener(this);
         history = (Button) findViewById(R.id.history);

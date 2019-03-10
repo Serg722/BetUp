@@ -2,7 +2,6 @@ package com.hfad.betup.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +16,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hfad.betup.BetToday;
 import com.hfad.betup.R;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,17 +31,11 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
     DatabaseReference db;
     private LayoutInflater mInflater;
     private List<BetToday> predictions = new ArrayList<>();
-
-   // private List<BetToday> predictionsAll = new ArrayList<>();
     final String TAG = "PredictionAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
-    private ChildEventListener mChildEventListener;
     private String currendate="";
     private Date filtr;
 
-    public void setCurrendate(String currendate) {
-        this.currendate = currendate;
-    }
 
     public String getCurrendate() {
         return currendate;
@@ -69,78 +58,25 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
             teams = (TextView) view.findViewById(R.id.bothTeams);
             predictionToday = (TextView) view.findViewById((R.id.prediction));
             keffGame = (TextView) view.findViewById(R.id.teamKeff);
-
         }
     }
-
 
     public PredictionAdapter( Context ctx, DatabaseReference dbPrediction) {
           createFlag();
         this.mInflater = LayoutInflater.from(ctx);
         this.db = dbPrediction;
-
         Date tempDate=new Date();
         this.filtr=new Date();
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         this.currendate=formatItem.format(tempDate);
         changeDateFiltr(this.filtr);
     }
-//        ChildEventListener childEventListener = new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot ds, @Nullable String s) {
-//
-//                String m_country = ds.child("country").getValue(String.class);
-//                String m_time = ds.child("time").getValue(String.class);
-//                String m_teamOwner = ds.child("teamOwner").getValue(String.class);
-//                String m_teamGuest = ds.child("teamGuest").getValue(String.class);
-//                String m_resultMatchOwner = ds.child("resultMatchOwner").getValue(String.class);
-//                String m_resultMatchGuest = ds.child("resultMatchGuest").getValue(String.class);
-//                String m_betPrediction = ds.child("betPrediction").getValue(String.class);
-//                String m_keff = ds.child("keff").getValue(String.class);
-//                String m_state = ds.child("state").getValue(String.class);
-//                String m_flag = ds.child("flag").getValue(String.class);
-//                String m_flagBonus = ds.child("flagBonus").getValue(String.class);
-//                String m_date = ds.child("date").getValue(String.class);
-//
-//                BetToday predict = new BetToday(m_country, m_time, m_teamOwner, m_teamGuest,
-//                        m_resultMatchOwner, m_resultMatchGuest, m_betPrediction, m_keff, m_state,
-//                        m_flag, m_flagBonus, m_date);
-//                    addCollection(predict);
-//
-//                notifyItemInserted(predictions.size());
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-//        this.db.addChildEventListener(childEventListener);
-//        mChildEventListener = childEventListener;
 
     public void changeDateFiltr(Date dateFiltr) {
         this.filtr=dateFiltr;
         SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
         String date1=formatItem.format(this.filtr);
-        Log.d(TAG,date1+" value filtr- ");
-
         Query request = db.orderByChild("date").equalTo(date1);
-
         request.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -149,7 +85,6 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
                     for (DataSnapshot PredSnapshot : dataSnapshot.getChildren()) {
                         BetToday temp = PredSnapshot.getValue(BetToday.class);
                         predictions.add(temp);
-                        Log.d(TAG, " 111111 " + temp);
                     }
                     Iterator<BetToday> it1=predictions.iterator();
                     while(it1.hasNext()){
@@ -158,9 +93,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
                             it1.remove();
                         }
                     }
-
                 }
-
                 notifyDataSetChanged();
             }
 
@@ -169,15 +102,6 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
 
             }
         });
-        Log.d(TAG,predictions.toString()+this.filtr);
-    }
-
-    private void addCollection( BetToday predict) {
-        String m_flagBonus=predict.getFlagBonus();
-        String m_resultMatchOwner=predict.getResultMatchOwner();
-        if(m_flagBonus.equals("false")&&m_resultMatchOwner.equals("-1")){
-           predictions.add(predict);
-       }
     }
 
     private void createFlag() {
@@ -211,6 +135,7 @@ public class PredictionAdapter extends RecyclerView.Adapter<PredictionAdapter.Cu
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
         flags.put("world.jpg", R.drawable.world);
+        flags.put("football.png", R.drawable.football);
 
     }
 

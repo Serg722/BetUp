@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +17,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hfad.betup.BetToday;
 import com.hfad.betup.R;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,23 +28,10 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
     DatabaseReference db;
     private LayoutInflater mInflater;
     private List<BetToday> filtrPredictions = new ArrayList<>();
-    private List<BetToday>  predictions=new ArrayList<>();
-    // private List<BetToday> predictionsAll = new ArrayList<>();
     final String TAG = "HistoryAdapter";
     TreeMap<String, Integer> flags = new TreeMap<>();
-    private ChildEventListener mChildEventListener;
     private String currendate="";
-
     Date filtr;
-
-
-    public void setCurrendate(String currendate) {
-        this.currendate = currendate;
-    }
-
-    public String getCurrendate() {
-        return currendate;
-    }
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +64,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
        this.filtr=dateFiltr;
        SimpleDateFormat formatItem = new SimpleDateFormat("dd.MM.yyyy");
        String date1=formatItem.format(this.filtr);
-       Log.d(TAG,date1+" value filtr- ");
        filtrPredictions.clear();
        Query request = db.orderByChild("date").equalTo(date1);
        request.addValueEventListener(new ValueEventListener() {
@@ -106,7 +90,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
            public void onCancelled(@NonNull DatabaseError databaseError) {
            }
        });
-        Log.d(TAG,filtrPredictions.toString()+this.filtr);
     }
 
     public HistoryAdapter(Context ctx, DatabaseReference dbPrediction) {
@@ -146,6 +129,7 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         flags.put("tennis.png", R.drawable.tennis);
         flags.put("hockey.png", R.drawable.hockey);
         flags.put("world.jpg", R.drawable.world);
+        flags.put("football.png", R.drawable.football);
     }
 
     @Override
@@ -161,9 +145,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
         BetToday tempPrediction = filtrPredictions.get(position);
         holder.country.setText(tempPrediction.getCountry());
         holder.teams.setText(tempPrediction.getTeamOwner() + " - " + tempPrediction.getTeamGuest());
-        // SimpleDateFormat formatItem = new SimpleDateFormat("hh:mm");
-    //    String time = tempPrediction.getTime().split(",")[1];
-   //     holder.timeMatch.setText(time);
         holder.flag.setImageResource(flags.get(tempPrediction.getFlag()));
         holder.predictionToday.setText(tempPrediction.getBetPrediction());
         holder.keffGame.setText(String.valueOf(tempPrediction.getKeff()));
@@ -179,8 +160,6 @@ public class HistoryAdapter  extends  RecyclerView.Adapter<HistoryAdapter.Custom
             stateColor = BetToday.NO_HISTORY;
         }
         holder.keffGame.setTextColor(stateColor);
-
-        // holder.flag.setImageResource(R.drawable.tennis2018);
     }
 
     @Override

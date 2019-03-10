@@ -1,14 +1,12 @@
 package com.hfad.betup;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 
 public class BetToday {
     public final static int POSITIVE_COLOR = 0xFF007404;
     public final static int NEGATIVE_COLOR = 0xFFC00117;
     public final static int RETURN_COLOR = 0xFFFDDE10;
     public final static int NO_HISTORY = 0xFFFFFFFF;
-    //test
     private String country;
     private String time;
     private String teamOwner;
@@ -25,23 +23,6 @@ public class BetToday {
     public BetToday() {
     }
 
-    public BetToday(String country, String time, String teamOwner, String teamGuest,
-                    String resultMatchOwner, String resultMatchGuest, String betPrediction, String keff,
-                    String state, String flag, String flagBonus, String date) {
-        this.country = country;
-        this.time = time;
-        this.teamOwner = teamOwner;
-        this.teamGuest = teamGuest;
-        this.resultMatchOwner = resultMatchOwner;
-        this.resultMatchGuest = resultMatchGuest;
-        this.betPrediction = betPrediction;
-        this.keff = keff;
-        this.state=state;
-        this.flag = flag;
-        this.flagBonus = flagBonus;
-        this.date = date;
-
-            }
 
     public String getCountry() {
         return country;
